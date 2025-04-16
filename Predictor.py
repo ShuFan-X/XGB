@@ -49,8 +49,8 @@ feature_values = [NHISS, Drinking, ePWV, NLR, Glu]
 features = np.array([feature_values])
 
 if st.button("Predict"):
-    predicted_class = model.predict(features)[0]
-    predicted_proba = model.predict_proba(features)[0]
+    predicted_class = model.predict(features.flatten())[0]
+    predicted_proba = model.predict_proba(features.flatten())[0]
     st.write(f"**Predicted Class:** {predicted_class} (0: Good Prognosis, 1: Bad Prognosis)")
     st.write(f"**Predicted Probabilities:** {predicted_proba}")
     probability = predicted_proba[predicted_class] * 100
@@ -78,7 +78,7 @@ if st.button("Predict"):
     st.subheader("SHAP Force Plot Explanation")
     explainer_shap = shap.TreeExplainer(model)
     shap_values = explainer_shap.shap_values(pd.DataFrame([feature_values], columns=feature_names))
-    shap_class1 = shap_values[..., 1]
+    
     if predicted_class == 1:
         shap.force_plot(explainer_shap.expected_value[1],shap_values[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
     # 期望值（基线值）
@@ -87,7 +87,7 @@ if st.button("Predict"):
     # 使用 Matplotlib 绘图
     else:
         shap.force_plot(explainer_shap.expected_value[0], shap_values[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
-    
+    shap.plots.force(shap_class1[12,...])
     plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
     st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation')
 
