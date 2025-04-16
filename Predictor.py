@@ -102,7 +102,7 @@ if st.button("Predict"):
 
     #Explain the instance
     lime_exp = lime_explainer.explain_instance(
-        data_row=features.flatten(),
+        data_row=features,
         predict_fn=model.predict_proba,
         num_features=13
     )
