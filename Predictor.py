@@ -103,7 +103,8 @@ if st.button("Predict"):
     #Explain the instance
     lime_exp = lime_explainer.explain_instance(
         data_row=features.flatten(),
-        predict_fn=model.predict_proba
+        predict_fn=model.predict_proba,
+        num_features=13
     )
 
     # Display the LIME explanation without the feature value table
