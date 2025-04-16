@@ -49,8 +49,8 @@ feature_values = [NHISS, Drinking, ePWV, NLR, Glu]
 features = np.array([feature_values])
 
 if st.button("Predict"):
-    predicted_class = model.predict(features.flatten())[0]
-    predicted_proba = model.predict_proba(features.flatten())[0]
+    predicted_class = model.predict(features)[0]
+    predicted_proba = model.predict_proba(features)[0]
     st.write(f"**Predicted Class:** {predicted_class} (0: Good Prognosis, 1: Bad Prognosis)")
     st.write(f"**Predicted Probabilities:** {predicted_proba}")
     probability = predicted_proba[predicted_class] * 100
