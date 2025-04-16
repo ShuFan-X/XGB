@@ -10,12 +10,12 @@ from lime.lime_tabular import LimeTabularExplainer
 #model = xgboost.Booster()
 #model.load_model('XGB.json')
 df2 =pd.read_csv('x_test.csv')
-x_test = df2[['NLR', 'admissionNIHSS', 'ePWV','Glu','Drinking']]
+x_test = df2[['NLR', 'adNIHSS', 'ePWV','Glu','Drinking']]
 
 model = joblib.load('RF.pkl')
 
 feature_names = [
-    "admissionNHISS",
+    "adNHISS",
     "Drinking",
     "ePWV",
     "NLR",
@@ -27,7 +27,7 @@ feature_names = [
 st.title("Prospective study with a 90-day follow-up")
 st.sidebar.header("Selection Panel") # 则边栏的标题
 st.sidebar.subheader("Picking up paraneters")
-admissionNHISS = st.number_input("admissionNHISS", min_value=0, max_value=42, value=1)
+adNHISS = st.number_input("adNHISS", min_value=0, max_value=42, value=1)
 #admissionNHISS = st.sidebar.slider("admissionNHISS", min_value=0, max_value=42, value=0, step=1)
 Drinking = st.selectbox("Drinking", options=[0, 1], format_func=lambda x:"Drinking"if x == 1 else "no Drinking")
 age = st.number_input("age", min_value=0, max_value=120, value=1)
@@ -45,14 +45,14 @@ MBP = DBP + 0.4*(SBP-DBP)
 ePWV = 9.587-0.402*age+4.56*0.001*age*age-2.621*0.00001*age*age*MBP+3.176*0.001*age*MBP-1.832*0.01*MBP
 NLR = N/L
 
-feature_values = [admissionNHISS, Drinking, ePWV, NLR, Glu]
+feature_values = [adNHISS, Drinking, ePWV, NLR, Glu]
 features = np.array([feature_values])
 
 
 if st.button("Predict"):
     predicted_class = model.predict(features)[0]
     predicted_proba = model.predict_proba(features)[0]
-    st.write(f"**Predicted Class:** {predicted_class} (1: Bad Prognosis, 0: Good Prognosis)")
+    st.write(f"**Predicted Class:** {predicted_class} (0: Good Prognosis, 1: Bad Prognosis)")
     st.write(f"**Predicted Probabilities:** {predicted_proba}")
     probability = predicted_proba[predicted_class] * 100
     # 如果预测类别为1（高风险）
