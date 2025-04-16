@@ -59,7 +59,7 @@ if st.button("Predict"):
     if predicted_class == 1:
         advice =(
             f"According to our model, you have a high risk of Bad Prognosis. "
-            f"The model predicts that your probability of having heart disease is (probability:.1f)%."
+            f"The model predicts that your probability of having Bad Prognosis is {probability:.1f}%."
             "It's advised to consult with your healthcare provider for further evaluation and possible intervention."
         )
 
@@ -67,7 +67,7 @@ if st.button("Predict"):
     else:
         advice =(
             f"According to our model, you have a low risk of Bad Prognosis. "
-            f"The model predicts that your probability of not having heart disease is (probability:.1f)%."
+            f"The model predicts that your probability of not having Bad Prognosis is {probability:.1f}%."
             "However, maintaining a healthy lifestyle is important. Please continue regular check-ups with your healthcare provider."
         )
     # 显示建议
