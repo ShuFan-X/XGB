@@ -36,9 +36,7 @@ DBP = st.number_input("DBP", min_value=0, max_value=300, value=0)
 N = st.number_input("N", min_value=0, max_value=50, value=0)
 L = st.number_input("L", min_value=0, max_value=50, value=0)
 Glu = st.number_input("Glu", min_value=0, max_value=50, value=0)
-HR = st.sidebar.slider("HR (bpm)", min_value=40, max_value=100, value=60, step=1)
-Hb = st.sidebar.slider("Hb (g/L)", min_value=60, nax_value=180, value=75, step=1)
-HDL = st.sidebar.slider("HDL (mmol/L)", min_value=0.20, max_value=2.70, value=0.52, step=0.01))
+
 
 MBP = DBP + 0.4*(SBP-DBP)
 ePWV = 9.587-0.402*age+4.56*0.001*age*age-2.621*0.00001*age*age*MBP+3.176*0.001*age*MBP-1.832*0.01*MBP
