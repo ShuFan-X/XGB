@@ -5,11 +5,13 @@ import pandas as pd
 import shap
 import matplotlib.pyplot as plt
 from lime.lime_tabular import LimeTabularExplainer
-
+import xgboost
+model = xgboost.Booster()
+model.load_model('XGB.json')
 df2 =pd.read_csv('x_test.csv')
 x_test = df2[['NLR', 'admissionNIHSS', 'ePWV','Glu','Drinking']]
 
-model = joblib.load('XGB.pkl')
+#model = joblib.load('XGB.pkl')
 
 feature_names = [
     "admissionNHISS",
