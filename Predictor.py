@@ -89,7 +89,7 @@ if st.button("Predict"):
     st.subheader("LIME Explanation")
     lime_explainer = LimeTabularExplainer(
         training_data=x_test.values, 
-        feature_names=x_test.columns.tolist()，
+        feature_names=x_test.columns.tolist(),
         class_names=['Good Prognosis', 'Bad Prognosis'],# Adjust class names to match your classification task
         mode='classification'
     )
