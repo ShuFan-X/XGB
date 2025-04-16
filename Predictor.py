@@ -46,14 +46,14 @@ feature_values = [admissionNHISS, Drinking, ePWV, NLR, Glu]
 features = np.array([feature_values])
 
 
-if st.button("Predict")：
+if st.button("Predict"):
     predicted_class = model.predict(features)[0]
     predicted_proba = model.predict_proba(features)[0]
     st.write(f"**Predicted Class:** {predicted_class} (1: Bad Prognosis, 0: Good Prognosis)")
     st.write(f"**Predicted Probabilities:** {predicted_proba}")
     probability = predicted_proba[predicted_class] * 100
     # 如果预测类别为1（高风险）
-    if predicted_class =: 1:
+    if predicted_class == 1:
         advice =(
             f"According to our model, you have a high risk of Bad Prognosis. "
             f"The model predicts that your probability of having heart disease is (probability:.1f)%."
@@ -74,13 +74,13 @@ if st.button("Predict")：
     explainer_shap = shap.TreeExplainer(model)
     shap_values = explainer_shap.shap_values(pd.DataFrame([feature_values], columns=feature_names)
     if predicted_class == 1:
-        shap.force_plot(explainer_shap.expected_value[1],shap_values[:,：,1]， pd.DataFrame([feature_values], columns=feature_names)，matplotlib=True)
+        shap.force_plot(explainer_shap.expected_value[1],shap_values[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
     # 期望值（基线值）
     #解释类别 0（未患病）的 SHAP 值
     # 特征值数据
     # 使用 Matplotlib 绘图
     else:
-        shap.force_plot(explainer_shap.expected_value[e], shap_values[：,:,0]，pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
+        shap.force_plot(explainer_shap.expected_value[e], shap_values[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
     
     plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
     st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation')
