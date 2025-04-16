@@ -72,7 +72,7 @@ if st.button("Predict"):
     # SHAP 解释
     st.subheader("SHAP Force Plot Explanation")
     explainer_shap = shap.TreeExplainer(model)
-    shap_values = explainer_shap.shap_values(pd.DataFrame([feature_values], columns=feature_names)
+    shap_values = explainer_shap.shap_values(pd.DataFrame([feature_values], columns=feature_names))
     if predicted_class == 1:
         shap.force_plot(explainer_shap.expected_value[1],shap_values[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
     # 期望值（基线值）
