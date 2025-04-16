@@ -6,7 +6,7 @@ import shap
 import matplotlib.pyplot as plt
 from lime.lime_tabular import LimeTabularExplainer
 
-df2 =pd.read_excel('x_test.xlsx')
+df2 =pd.read_csv('x_test.csv')
 x_test = df2[['NLR', 'admissionNIHSS', 'ePWV','Glu','Drinking']]
 
 model = joblib.load('XGB.pkl')
