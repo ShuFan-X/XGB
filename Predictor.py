@@ -48,7 +48,6 @@ NLR = N/L
 feature_values = [NHISS, Drinking, ePWV, NLR, Glu]
 features = np.array([feature_values])
 
-
 if st.button("Predict"):
     predicted_class = model.predict(features)[0]
     predicted_proba = model.predict_proba(features)[0]
@@ -72,6 +71,9 @@ if st.button("Predict"):
         )
     # 显示建议
     st.write(advice)
+    st.write(feature_values)
+    st.write(features)
+    st.write(features.flatten())
     # SHAP 解释
     st.subheader("SHAP Force Plot Explanation")
     explainer_shap = shap.TreeExplainer(model)
