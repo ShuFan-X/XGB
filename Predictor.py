@@ -76,14 +76,15 @@ if st.button("Predict"):
     st.subheader("SHAP Force Plot Explanation")
     explainer_shap = shap.TreeExplainer(model)
     shap_values = explainer_shap.shap_values(pd.DataFrame([feature_values], columns=feature_names))
+    shap_class1 = shap_values[..., 1]
     if predicted_class == 1:
-        shap.force_plot(explainer_shap.expected_value[1],shap_values[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
+        shap.force_plot(explainer_shap.expected_value[1],shap_class1[:,:,1], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
     # 期望值（基线值）
     #解释类别 0（未患病）的 SHAP 值
     # 特征值数据
     # 使用 Matplotlib 绘图
     else:
-        shap.force_plot(explainer_shap.expected_value[e], shap_values[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
+        shap.force_plot(explainer_shap.expected_value[e], shap_class1[:,:,0], pd.DataFrame([feature_values], columns=feature_names), matplotlib=True)
     
     plt.savefig("shap_force_plot.png", bbox_inches='tight', dpi=1200)
     st.image("shap_force_plot.png", caption='SHAP Force Plot Explanation')
