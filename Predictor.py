@@ -10,7 +10,7 @@ from lime.lime_tabular import LimeTabularExplainer
 #model = xgboost.Booster()
 #model.load_model('XGB.json')
 df2 =pd.read_csv('x_test.csv')
-x_test = df2[['NLR', 'NIHSS', 'ePWV','Glu','Drinking']]
+x_test = df2[['NIHSS', 'Drinking'， 'ePWV', 'NLR', 'Glu']]
 
 model = joblib.load('RF.pkl')
 
@@ -102,7 +102,7 @@ if st.button("Predict"):
 
     #Explain the instance
     lime_exp = lime_explainer.explain_instance(
-        data_row=features,
+        data_row=features.flatten(),
         predict_fn=model.predict_proba,
         num_features=13
     )
