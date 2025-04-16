@@ -10,7 +10,7 @@ from lime.lime_tabular import LimeTabularExplainer
 #model = xgboost.Booster()
 #model.load_model('XGB.json')
 df2 =pd.read_csv('x_test.csv')
-x_test = df2[['NIHSS', 'Drinking'， 'ePWV', 'NLR', 'Glu']]
+x_test = df2[['NIHSS', 'Drinking', 'ePWV', 'NLR', 'Glu']]
 
 model = joblib.load('RF.pkl')
 
