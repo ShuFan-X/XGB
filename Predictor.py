@@ -26,7 +26,7 @@ st.sidebar.header("Selection Panel") # 则边栏的标题
 st.sidebar.subheader("Picking up paraneters")
 admissionNHISS = st.number_input("admissionNHISS", min_value=0, max_value=42, value=0)
 #admissionNHISS = st.sidebar.slider("admissionNHISS", min_value=0, max_value=42, value=0, step=1)
-Drinking = st.selectbox("Drinking", options=[0, 1], format_func=lambda x:"Drinking"if x =="no Drinking")
+Drinking = st.selectbox("Drinking", options=[0, 1], format_func=lambda x:"Drinking"if x == 1 else "no Drinking")
 age = st.number_input("age", min_value=0, max_value=120, value=0)
 #age = st.sidebar.slider("age", min_value=0, max_value=120, value=0, step=1)
 SBP = st.number_input("SBP", min_value=0, max_value=300, value=0)
