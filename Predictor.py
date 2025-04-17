@@ -71,9 +71,6 @@ if st.button("Predict"):
         )
     # 显示建议
     st.write(advice)
-    st.write(feature_values)
-    st.write(features)
-    st.write(features.flatten())
     # SHAP 解释
     st.subheader("SHAP Force Plot Explanation")
     explainer_shap = shap.TreeExplainer(model)
